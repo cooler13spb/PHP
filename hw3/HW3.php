@@ -48,39 +48,30 @@ var_dump(change_string($str));
 
 
 //-----------------
-// В ПРОЦЕССЕ
 // Задание 4:
 // Сгенерировать 5 массивов из случайных чисел. Вывести массивы и сумму их элементов на экран. Найти массив с максимальной суммой элементов. Вывести его на экран еще раз. Генерация массива и подсчет суммы - разные функции
 
-$create_arr = function(){
-	$arr = [];
-	for ($i=0;$i<10;$i++){
-	$arr[$i] = rand(0,10);
-	}
-	return $arr;
-};
-
-function create_arrays($get_array){
-	$arrs=[];
+$array=function(){
+	$array=[];
 	for ($i=0;$i<5;$i++){
-		$arr1=$get_array();
-		var_dump($arr1);
-		array_push($arrs, $get_array);
-	}
-}
-
-var_dump(create_arrays($create_arr));
-
-// function get_sum($arr){
-// 	return array_sum($arr);
-// }
-
-// function max_arr($arr){
-// 	$arrays = [];
-// 	for ($i=0;$i<5;$i++){
-// 	array_push($arrays, $arr());
-// 	}
-// 	return $arrays;
-// }
-
-// max_arr($create_arr);
+		array_push($array,rand(1,100));
+	};
+	return $array;
+};
+function get_arrays($get_array,$sum){
+	$result_arr=[];
+	for ($i=0;$i<5;$i++){
+		$arr=$get_array();
+		var_dump($arr);
+		array_push($result_arr,$sum($arr));
+	
+	};
+	$max=max($result_arr);
+	return [$result_arr,
+		$max
+	];
+};
+$sum=function($arr){
+	return array_sum($arr);
+};
+var_dump(get_arrays($array,$sum));
